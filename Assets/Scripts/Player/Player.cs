@@ -12,15 +12,18 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 	private Animator anim;
 	private CharacterController controller;
 
-	public float speed = 600.0f;
-	public float turnSpeed = 400.0f;
+	public float speed;
+	public float turnSpeed;
 	private Vector3 moveDirection = Vector3.zero;
-	public float gravity = 20.0f;
+	public float gravity;
 
 	// temp for testing the inventory UI : Chris
 	protected override void Awake()
 	{
 		base.Awake();
+
+		controller = GetComponent<CharacterController>();
+		anim = gameObject.GetComponentInChildren<Animator>();
 
 		backpack_1.Init(10 * 8);
 		backpack_2.Init(10 * 8);
@@ -36,36 +39,54 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 	}
 	// end temp ///////////////////////////////
 
-	void Start()
-	{
-		/* Turning this off for now : Chris
-		controller = GetComponent<CharacterController>();
-		anim = gameObject.GetComponentInChildren<Animator>();
-		*/
-	}
-
 	void Update()
 	{
-		/* Turning this off for now : Chris
-		if (Input.GetKey("w"))
+		//if (Input.GetKey("w"))
+		//{
+		//	anim.SetInteger("AnimationPar", 1);
+		//}
+		//else
+		//{
+		//	anim.SetInteger("AnimationPar", 0);
+		//}
+
+		//if (controller.isGrounded)
+		//{
+		//	moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
+		//}
+
+		//float turn = Input.GetAxis("Horizontal");
+		//transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
+		//controller.Move(moveDirection * Time.deltaTime);
+		//moveDirection.y -= gravity * Time.deltaTime;
+
+
+		// Reading the Input
+		float x = Input.GetAxis("Horizontal");
+		float y = Input.GetAxis("Vertical");
+
+		Vector3 movement = new Vector3(x, 0f, y);
+
+		// Moving
+		if (movement.magnitude > 0)
 		{
-			anim.SetInteger("AnimationPar", 1);
+			movement.Normalize();
+			movement *= speed * Time.deltaTime;
+			transform.Translate(movement, Space.World);
+
+			anim.Play("infantry_combat_run", -1);
 		}
 		else
-		{
-			anim.SetInteger("AnimationPar", 0);
-		}
+			anim.Play("infantry_combat_idle", -1);
 
-		if (controller.isGrounded)
-		{
-			moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
-		}
+		// Animating
+		//float velocityZ = Vector3.Dot(movement.normalized, transform.forward);
+		//float velocityX = Vector3.Dot(movement.normalized, transform.right);
 
-		float turn = Input.GetAxis("Horizontal");
-		transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
-		controller.Move(moveDirection * Time.deltaTime);
-		moveDirection.y -= gravity * Time.deltaTime;
-		*/
+		//anim.SetFloat("VelocityZ", velocityZ, 0.1f, Time.deltaTime);
+		//anim.SetFloat("VelocityX", velocityX, 0.1f, Time.deltaTime);
+
+		AimTowardMouse();
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -76,5 +97,23 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 			other.gameObject.SetActive(false);
 		}
 		*/
+	}
+
+	void AimTowardMouse()
+	{
+		//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, _aimLayerMask))
+		//{
+		//	var destination = hitInfo.point;
+		//	destination.y = transform.position.y;
+
+		//	var _direction = destination - transform.position;
+		//	_direction.y = 0f;
+		//	_direction.Normalize();
+		//	Debug.DrawRay(transform.position, _direction, Color.green);
+		//	transform.rotation = Quaternion.LookRotation(_direction, transform.up);
+
+		//	_sphere.position = destination;
+		//}
 	}
 }
