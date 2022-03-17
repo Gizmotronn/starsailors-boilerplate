@@ -57,28 +57,28 @@ public class Lootlocker : InstanceMonoBehaviour<Lootlocker>
         {
             if (response.success)
             {
-                Debug.Log("Successfully retrieved player inventory: " + response.inventory.Length);
+                //Debug.Log("Successfully retrieved player inventory: " + response.inventory.Length);
 
-                foreach (var item in response.inventory)
-                {
-                    Debug.Log("fill item with " + item.asset.name);
+                //foreach (var item in response.inventory)
+                //{
+                //    Debug.Log("fill item with " + item.asset.name);
 
-                    switch (item.asset.name)
-                    {
-                        case "Item_1":
-                            Store.Instance.window_1.AddItem(new Item(Item.Type.rabbit, 1));
-                            break;
-                        case "Item_2":
-                            Store.Instance.window_1.AddItem(new Item(Item.Type.puzzle, 1));
-                            break;
-                        case "Item_3":
-                            Store.Instance.window_1.AddItem(new Item(Item.Type.spade, 1));
-                            break;
-                    }
-                }
+                //    switch (item.asset.name)
+                //    {
+                //        case "Item_1":
+                //            Store.Instance.window_1.AddItem(new Item(Item.Type.rabbit, 1));
+                //            break;
+                //        case "Item_2":
+                //            Store.Instance.window_1.AddItem(new Item(Item.Type.puzzle, 1));
+                //            break;
+                //        case "Item_3":
+                //            Store.Instance.window_1.AddItem(new Item(Item.Type.spade, 1));
+                //            break;
+                //    }
+                //}
 
-                Store.Instance.window_1.RefreshItems(0);
-                Store.Instance.window_2.RefreshItems(0);
+                //Store.Instance.window_1.RefreshItems(0);
+                //Store.Instance.window_2.RefreshItems(0);
             }
             else
             {
