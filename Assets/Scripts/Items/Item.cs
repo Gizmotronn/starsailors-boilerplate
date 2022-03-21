@@ -1,3 +1,7 @@
+/*
+ *  Actual item information
+ */
+
 using UnityEngine;
 
 [System.Serializable]

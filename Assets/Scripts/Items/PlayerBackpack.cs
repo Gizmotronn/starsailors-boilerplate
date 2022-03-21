@@ -1,3 +1,7 @@
+/*
+ *  A item window for the player containg the list of items in the player backpack
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,11 +18,11 @@ public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player it
         foreach (ItemWindow child in gameObject.transform.GetComponentsInChildren<ItemWindow>(true))
         {
             window = child;
-            window.Init(Player.Instance.backpack, 8, 3, false);
+            window.Init(Player.Instance.backpack);
             break;
         }
 
-        Close();
+        Close(true);
     }
 
     void Update()
@@ -29,26 +33,37 @@ public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player it
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Close();
+            Close(false);
         }
     }
 
-    public void Open()
+    public void Open(bool instant)
     {
         //gameObject.SetActive(true);
         isOpen = true;
         window.RefreshItems(0);
         Cursor.lockState = CursorLockMode.None;
 
-        LeanTween.move(gameObject.GetComponent<RectTransform>(), new Vector3(0, 0, 0f), 0.3f).setDelay(0.1f);
+        Vector3 openpos = new Vector3(0, 0, 0f);
+
+        if (instant)
+            gameObject.transform.localPosition = openpos;
+        else
+            LeanTween.move(gameObject.GetComponent<RectTransform>(), openpos, 0.3f).setDelay(0.1f);
     }
 
-    void Close()
+    void Close(bool instant)
     {
         //gameObject.SetActive(false);
         isOpen = false;
         Cursor.lockState = CursorLockMode.Locked;
-        LeanTween.move(gameObject.GetComponent<RectTransform>(), new Vector3(-1000, 0, 0f), 0.3f).setDelay(0.1f);
+
+        Vector3 closedpos = new Vector3(-1000, 0, 0f);
+
+        if (instant)
+            gameObject.transform.localPosition = closedpos;
+        else
+            LeanTween.move(gameObject.GetComponent<RectTransform>(), closedpos, 0.3f).setDelay(0.1f);
     }
 
     //void Test_Gather_Widgets()

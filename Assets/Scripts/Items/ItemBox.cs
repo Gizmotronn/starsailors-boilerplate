@@ -1,3 +1,7 @@
+/*
+ *  Holds an item in the ui screen
+ */
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -70,6 +74,8 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
         Debug.Log("OnEndDrag: " + Debug_Get_Box_Info());
 
+        if (!item.IsValid()) return;
+
         // see if we've dropped this box on a different box
 
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
@@ -103,6 +109,21 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
                 box.parent.RefreshItems();
                 parent.RefreshItems();
             }
+        }
+
+        if (results.Count < 1) // we're dragging out of the inventory, so drop the item
+        {
+            float addx = Random.Range(1, 3f);
+            if (Random.Range(0, 2) > 0) addx = -addx;
+            float addy = Random.Range(1, 3f);
+            if (Random.Range(0, 2) > 0) addy = -addy;
+
+            Vector3 where = new Vector3(Player.Instance.transform.position.x + addx, Player.Instance.transform.position.y + 0.5f, Player.Instance.transform.position.z + addy); // spawn in a random location away from the player so you don't automatically pick it up when you leave the inventory
+
+            Player.Instance.SpawnCrate(item.type, item.number, where);
+
+            item.Clear();
+            parent.RefreshItems();
         }
     }
 

@@ -1,9 +1,18 @@
+/*
+ *  A window that holds a list of items in the ui
+ */
+
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemWindow : MonoBehaviour
 {
+    public int items_per_row;
+    public int items_per_column;
+    public bool horizontal = false;
+
     public GameObject parent;
 
     public Scrollbar scrollbar;
@@ -12,18 +21,11 @@ public class ItemWindow : MonoBehaviour
 
     List<ItemBox> boxes;
 
-    int items_per_row;
-    int items_per_column;
-    bool horizontal = false;
-
     Inventory inventory;
 
-    public void Init(Inventory _inventory, int _items_per_row, int _items_per_column, bool _horizontal)
+    public void Init(Inventory _inventory)
     {
         inventory = _inventory;
-        items_per_row = _items_per_row;
-        items_per_column = _items_per_column;
-        horizontal = _horizontal;
 
         // end
 
