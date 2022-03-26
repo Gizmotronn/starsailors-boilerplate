@@ -23,6 +23,8 @@ public class ItemWindow : MonoBehaviour
 
     Inventory inventory;
 
+    int box_selected = -1;
+
     public void Init(Inventory _inventory)
     {
         inventory = _inventory;
@@ -44,8 +46,22 @@ public class ItemWindow : MonoBehaviour
             boxes.Add(box); // add it to the list
         }
 
-        scrollbar.value = 0; // set up the window to be at the beginning of the list
+        if (scrollbar != null)
+            scrollbar.value = 0; // set up the window to be at the beginning of the list
         ScrollBar(); // call scrollbar to refresh the items
+    }
+
+    public void SetBoxSelected(int b)
+    {
+        foreach (ItemBox box in boxes)
+            box.SetHighlight(false);
+
+        box_selected = b;
+
+        if (box_selected < 0) box_selected = 0;
+        if (box_selected > boxes.Count - 1) box_selected = boxes.Count - 1;
+
+        boxes[box_selected].SetHighlight(true);
     }
 
     public void AddItem(Item item)
@@ -60,12 +76,13 @@ public class ItemWindow : MonoBehaviour
 
     public void ScrollBar()
     {
-        RefreshItems(scrollbar.value);
+        RefreshItems(scrollbar != null ? scrollbar.value : 0);
     }
 
     public void RefreshItems(float percent = -1)
     {
-        if (percent < 0) percent = scrollbar.value;
+        if (scrollbar != null)
+            if (percent < 0) percent = scrollbar.value;
 
         int columns;
         int top;

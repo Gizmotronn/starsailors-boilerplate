@@ -39,7 +39,7 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 
 		backpack.Init(10 * 11);
 
-		Cursor.lockState = CursorLockMode.Locked; // set the cursor state to hide the cursor
+        Cursor.lockState = CursorLockMode.Locked; // set the cursor state to hide the cursor
 
         //for (int i = 0; i < 6; i++) // fill the backpack with junk
         //{
@@ -70,6 +70,7 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
             // cooldown interval to allow reliable jumping even whem coming down ramps
             groundedTimer = 0.2f;
         }
+
         if (groundedTimer > 0)
         {
             groundedTimer -= Time.deltaTime;
@@ -129,6 +130,28 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 			PlayerBackpack.Instance.Open(false); // open player backpack
 		}
 
+        var origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        var direction = transform.forward * 10;
+        Debug.DrawRay(origin, direction, Color.red);
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            var ray = new Ray(origin, direction);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                var obj = hit.transform.gameObject;
+
+                Debug.Log("object hit " + obj.name);
+                if (1 << obj.layer == crateLayer)
+                {
+                    PickupCrate(obj.GetComponent<Crate>());
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             // pick a random location
@@ -144,10 +167,17 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 
         for (int i = 0; i < Physics.OverlapSphereNonAlloc(crateCheck.transform.position, crateDistance, hitColliders, crateLayer); i++) // check for collisions with crates
         {
-            var crate = hitColliders[i].gameObject.GetComponent<Crate>();
-            var item = crate.Pickup(); // get the item
-            backpack.AddItem(item.type, item.number); // add the item to our inventory
+            PickupCrate(hitColliders[i].gameObject.GetComponent<Crate>());
         }
+    }
+
+    void PickupCrate(Crate crate)
+    {
+        var item = crate.Pickup(); // get the item
+        backpack.AddItem(item.type, item.number); // add the item to our inventory
+
+        QuickSlots.Instance.Refresh();
+        Debug.Log("Picked up crate");
     }
 
     public void SpawnCrate(Item.Type type, int number, Vector3 pos)

@@ -2,8 +2,6 @@
  *  A item window for the player containg the list of items in the player backpack
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player item menu, bringing this up pauses the game
@@ -40,6 +38,9 @@ public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player it
     public void Open(bool instant)
     {
         //gameObject.SetActive(true);
+
+        QuickSlots.Instance.Close(instant);
+
         isOpen = true;
         window.RefreshItems(0);
         Cursor.lockState = CursorLockMode.None;
@@ -52,9 +53,12 @@ public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player it
             LeanTween.move(gameObject.GetComponent<RectTransform>(), openpos, 0.3f).setDelay(0.1f);
     }
 
-    void Close(bool instant)
+    public void Close(bool instant)
     {
         //gameObject.SetActive(false);
+
+        QuickSlots.Instance.Open(instant);
+
         isOpen = false;
         Cursor.lockState = CursorLockMode.Locked;
 

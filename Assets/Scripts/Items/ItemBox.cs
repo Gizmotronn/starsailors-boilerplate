@@ -13,6 +13,7 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     public List<Sprite> images; // temp to test things
 
     public Image graphic;
+    public Image highlight;
     public TMPro.TextMeshProUGUI number;
 
     Item item = new Item();
@@ -23,6 +24,13 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     public void Init(ItemWindow _parent)
     {
         parent = _parent;
+
+        SetHighlight(false);
+    }
+
+    public void SetHighlight(bool on)
+    {
+        highlight.enabled = on;
     }
 
     public bool IsValid() { return item != null && item.IsValid(); }
