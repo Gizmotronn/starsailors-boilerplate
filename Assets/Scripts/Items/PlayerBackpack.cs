@@ -7,19 +7,14 @@ using UnityEngine;
 public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player item menu, bringing this up pauses the game
 {
     public bool isOpen { get; private set; } = false;
-    ItemWindow window;
+    public ItemWindow window;
 
     protected override void Awake()
     {
         base.Awake();
 
-        foreach (ItemWindow child in gameObject.transform.GetComponentsInChildren<ItemWindow>(true))
-        {
-            window = child;
-            window.Init(Player.Instance.backpack);
-            break;
-        }
-
+        Debug.Log("PlayerBackpack awake window: " + window);
+        window.Init(Player.Instance.backpack);
         Close(true);
     }
 
@@ -37,8 +32,6 @@ public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player it
 
     public void Open(bool instant)
     {
-        //gameObject.SetActive(true);
-
         QuickSlots.Instance.Close(instant);
 
         isOpen = true;
@@ -55,10 +48,6 @@ public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player it
 
     public void Close(bool instant)
     {
-        //gameObject.SetActive(false);
-
-        QuickSlots.Instance.Open(instant);
-
         isOpen = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -68,6 +57,8 @@ public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player it
             gameObject.transform.localPosition = closedpos;
         else
             LeanTween.move(gameObject.GetComponent<RectTransform>(), closedpos, 0.3f).setDelay(0.1f);
+
+        QuickSlots.Instance.Open(instant);
     }
 
     //void Test_Gather_Widgets()

@@ -7,20 +7,14 @@ using UnityEngine;
 public class QuickSlots : InstanceMonoBehaviour<QuickSlots>
 {
     public bool isOpen { get; private set; } = false;
-    ItemWindow window;
+    public ItemWindow window;
 
     protected override void Awake()
     {
         base.Awake();
 
-        foreach (ItemWindow child in gameObject.transform.GetComponentsInChildren<ItemWindow>(true))
-        {
-            window = child;
-            window.Init(Player.Instance.backpack);
-            break;
-        }
-
-        Open(true);
+        Debug.Log("QuickSlots awake");
+        window.Init(Player.Instance.backpack);
     }
 
     void Update()
@@ -62,7 +56,6 @@ public class QuickSlots : InstanceMonoBehaviour<QuickSlots>
 
     public void Open(bool instant)
     {
-        //gameObject.SetActive(true);
         isOpen = true;
         Refresh();
         Cursor.lockState = CursorLockMode.None;
@@ -77,7 +70,6 @@ public class QuickSlots : InstanceMonoBehaviour<QuickSlots>
 
     public void Close(bool instant)
     {
-        //gameObject.SetActive(false);
         isOpen = false;
         Cursor.lockState = CursorLockMode.Locked;
 

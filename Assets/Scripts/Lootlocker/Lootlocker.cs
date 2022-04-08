@@ -3,6 +3,14 @@ using LootLocker.Requests;
 
 public class Lootlocker : InstanceMonoBehaviour<Lootlocker>
 {
+    protected override void Awake()
+    {
+        base.Awake();
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+
     void Start()
     {
         LootLockerSDKManager.StartGuestSession((response) =>
@@ -89,50 +97,50 @@ public class Lootlocker : InstanceMonoBehaviour<Lootlocker>
 
     public void AddItem(Item item) // add the item to the lootlocker server for this player
     {
-        switch (item.type)
+        //switch (item.type)
 
-        {
-            case Item.Type.rabbit:
-                LootLockerSDKManager.TriggeringAnEvent("Give_Rabbit", (response) =>
-                {
-                    if (response.success)
-                    {
-                        Debug.Log("Successfully triggered event Rabbit");
-                    }
-                    else
-                    {
-                        Debug.Log("Error triggering event GiveItem");
-                    }
-                });
-                break;
-            case Item.Type.puzzle:
-                LootLockerSDKManager.TriggeringAnEvent("Give_Puzzle", (response) =>
-                {
-                    if (response.success)
-                    {
-                        Debug.Log("Successfully triggered event Puzzle");
-                    }
-                    else
-                    {
-                        Debug.Log("Error triggering event GiveItem");
-                    }
-                });
-                break;
-            case Item.Type.spade:
-                LootLockerSDKManager.TriggeringAnEvent("Give_Spade", (response) =>
-                {
-                    if (response.success)
-                    {
-                        Debug.Log("Successfully triggered event Spade");
-                    }
-                    else
-                    {
-                        Debug.Log("Error triggering event GiveItem");
-                    }
-                });
-                break;
+        //{
+        //    case Item.Type.rabbit:
+        //        LootLockerSDKManager.TriggeringAnEvent("Give_Rabbit", (response) =>
+        //        {
+        //            if (response.success)
+        //            {
+        //                Debug.Log("Successfully triggered event Rabbit");
+        //            }
+        //            else
+        //            {
+        //                Debug.Log("Error triggering event GiveItem");
+        //            }
+        //        });
+        //        break;
+        //    case Item.Type.puzzle:
+        //        LootLockerSDKManager.TriggeringAnEvent("Give_Puzzle", (response) =>
+        //        {
+        //            if (response.success)
+        //            {
+        //                Debug.Log("Successfully triggered event Puzzle");
+        //            }
+        //            else
+        //            {
+        //                Debug.Log("Error triggering event GiveItem");
+        //            }
+        //        });
+        //        break;
+        //    case Item.Type.spade:
+        //        LootLockerSDKManager.TriggeringAnEvent("Give_Spade", (response) =>
+        //        {
+        //            if (response.success)
+        //            {
+        //                Debug.Log("Successfully triggered event Spade");
+        //            }
+        //            else
+        //            {
+        //                Debug.Log("Error triggering event GiveItem");
+        //            }
+        //        });
+        //        break;
 
-        }
+        //}
     }
 
     public void RemoveItem(Item item) // remove an item from the lootlocker server for this player

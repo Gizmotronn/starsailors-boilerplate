@@ -34,6 +34,8 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 	{
 		base.Awake();
 
+        Debug.Log("Player Awake");
+
 		controller = GetComponent<CharacterController>();
 		anim = gameObject.GetComponentInChildren<Animator>();
 

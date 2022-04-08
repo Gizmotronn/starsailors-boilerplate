@@ -45,7 +45,13 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
     void Refresh_Icon()
     {
-        graphic.sprite = images[IsValid() ? (int)item.type : 0];
+        graphic.enabled = false;
+        if (IsValid())
+        {
+            graphic.sprite = images[(int)(item.type - 1)];
+            graphic.enabled = true;
+        }
+
         number.text = IsValid() ? item.number.ToString() : "";
     }
 

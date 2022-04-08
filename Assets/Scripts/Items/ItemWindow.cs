@@ -15,7 +15,7 @@ public class ItemWindow : MonoBehaviour
 
     public GameObject parent;
 
-    public Scrollbar scrollbar;
+    public Slider scrollbar;
 
     public ItemBox itembox;
 
@@ -81,6 +81,8 @@ public class ItemWindow : MonoBehaviour
 
     public void RefreshItems(float percent = -1)
     {
+        if (inventory == null) return;
+
         if (scrollbar != null)
             if (percent < 0) percent = scrollbar.value;
 
