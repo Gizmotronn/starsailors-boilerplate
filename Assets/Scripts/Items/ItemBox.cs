@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
-    public GameObject inventory;
+    //public GameObject inventory;
     public List<Sprite> images; // temp to test things
 
     public Image graphic;
@@ -19,6 +19,8 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     Item item = new Item();
     int index = 0;
 
+    public bool can_drop_items { get; private set; } = true;
+
     public ItemWindow parent { get; private set; } // a reference to the parent ItemWindow
 
     public void Init(ItemWindow _parent)
@@ -26,6 +28,11 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         parent = _parent;
 
         SetHighlight(false);
+    }
+
+    public void SetCanDropItems(bool v)
+    {
+        can_drop_items = v;
     }
 
     public void SetHighlight(bool on)
@@ -69,7 +76,7 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     {
         if (item == null || item.number < 1) return;
 
-        graphic.transform.SetParent(inventory.transform);
+        graphic.transform.SetParent(parent.parent.transform);
 
         //Debug.Log("OnBeginDrag: " + Debug_Get_Box_Info());
     }
@@ -86,7 +93,7 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         graphic.transform.SetParent(transform);
         graphic.transform.localPosition = new Vector3(0, 0, 0);
 
-        Debug.Log("OnEndDrag: " + Debug_Get_Box_Info());
+        //Debug.Log("OnEndDrag: " + Debug_Get_Box_Info());
 
         if (!item.IsValid()) return;
 
@@ -102,6 +109,8 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
             if (res.gameObject.TryGetComponent(out ItemBox box))
             {
                 if (this == box) continue;// if we're putting into the same box, don't go further
+
+                if (!box.can_drop_items) continue; // don't let us drop items in if can drop items = false
 
                 var result = box.parent.PutItemAt(item.type, item.number, box.index);
                 if (result.Item1 == 1)

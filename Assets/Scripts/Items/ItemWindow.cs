@@ -1,16 +1,16 @@
 /*
- *  A window that holds a list of items in the ui
+ *  A window that holds a list of items in the ui : Chris
  */
 
-
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemWindow : MonoBehaviour
 {
-    public int items_per_row;
-    public int items_per_column;
+    public int items_x;
+    public int items_y;
     public bool horizontal = false;
 
     public GameObject parent;
@@ -25,15 +25,18 @@ public class ItemWindow : MonoBehaviour
 
     int box_selected = -1;
 
-    public void Init(Inventory _inventory)
+    Action RefreshItemCallback = null; // this is an optional fuction that can be called when RefreshItems is called. I use this in places like where the crafting screen needs to know if items have been moved out of the forge so it can enable / disable the craft button
+
+    public void Init(Inventory _inventory, Action _RefreshItemCallback = null)
     {
         inventory = _inventory;
+        RefreshItemCallback = _RefreshItemCallback;
 
         // end
 
         boxes = new List<ItemBox>();
 
-        for (int i = 0; i < items_per_row * items_per_column; i++) // go to 28 which is how many will fit in the window
+        for (int i = 0; i < items_x * items_y; i++) // go to 28 which is how many will fit in the window
         {
             var copy = Instantiate(itembox.gameObject); // make a copy
             copy.SetActive(true); // set it active
@@ -49,6 +52,12 @@ public class ItemWindow : MonoBehaviour
         if (scrollbar != null)
             scrollbar.value = 0; // set up the window to be at the beginning of the list
         ScrollBar(); // call scrollbar to refresh the items
+    }
+
+    public void DisableItemDrop()
+    {
+        foreach (ItemBox i in boxes)
+            i.SetCanDropItems(false);
     }
 
     public void SetBoxSelected(int b)
@@ -91,30 +100,32 @@ public class ItemWindow : MonoBehaviour
 
         if (!horizontal)
         {
-            columns = inventory.CountItems() / items_per_row + (inventory.CountItems() % items_per_row > 0 ? 1 : 0); // get total number of columns
+            columns = inventory.CountMaxItems() / items_x + (inventory.CountMaxItems() % items_x > 0 ? 1 : 0); // get total number of columns
 
             top = (int)(percent * columns);
 
-            if (top > columns - items_per_column) top = columns - items_per_column;
+            if (top > columns - items_y) top = columns - items_y;
             if (top < 0) top = 0;
         }
         else
         {
-            columns = inventory.CountItems() / items_per_column + (inventory.CountItems() % items_per_column > 0 ? 1 : 0); // get total number of columns
+            columns = inventory.CountMaxItems() / items_y + (inventory.CountMaxItems() % items_y > 0 ? 1 : 0); // get total number of columns
 
             top = (int)(percent * columns);
 
-            if (top > columns - items_per_row) top = columns - items_per_row;
+            if (top > columns - items_x) top = columns - items_x;
             if (top < 0) top = 0;
         }
 
-        for (int i = 0; i < items_per_row * items_per_column; i++)
+        for (int i = 0; i < items_x * items_y; i++)
         {
-            int itm = i + top * items_per_row; // get a reference to the right item
+            int itm = i + top * items_x; // get a reference to the right item
 
-            if (horizontal) itm = i + top * items_per_column;
+            if (horizontal) itm = i + top * items_y;
 
             boxes[i].Fill(itm, inventory.GetItemAt(itm)); // put the item in the box
         }
+
+        RefreshItemCallback?.Invoke(); // if we passed a function here, fire it off
     }
 }

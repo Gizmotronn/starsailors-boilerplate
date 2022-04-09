@@ -1,5 +1,5 @@
 /*
- *  Quickslots that are always visible from the character view
+ *  Quickslots that are always visible from the character view : Chris
  */
 
 using UnityEngine;
@@ -12,8 +12,6 @@ public class QuickSlots : InstanceMonoBehaviour<QuickSlots>
     protected override void Awake()
     {
         base.Awake();
-
-        Debug.Log("QuickSlots awake");
         window.Init(Player.Instance.backpack);
     }
 

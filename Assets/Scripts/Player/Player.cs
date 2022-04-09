@@ -1,5 +1,5 @@
 /*
- *  Player object in the world, also holds player info
+ *  Player object in the world, also holds player info : Chris
  */
 
 using UnityEngine;
@@ -34,8 +34,6 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 	{
 		base.Awake();
 
-        Debug.Log("Player Awake");
-
 		controller = GetComponent<CharacterController>();
 		anim = gameObject.GetComponentInChildren<Animator>();
 
@@ -56,7 +54,7 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
     float groundedTimer = 0;
     void Update()
     {
-		if (PlayerBackpack.Instance.isOpen) return; // if the player backpack is open return
+		if (PlayerBackpack.Instance.isOpen || CraftingScreen.Instance.isOpen) return; // if the player backpack is open return
 
 		float mouseX = Input.GetAxis("Mouse X") * (mouse_sensitivity * 100) * Time.deltaTime;
 		float mouseY = Input.GetAxis("Mouse Y") * (mouse_sensitivity * 25) * Time.deltaTime;
@@ -131,6 +129,11 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
         {
 			PlayerBackpack.Instance.Open(false); // open player backpack
 		}
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CraftingScreen.Instance.Open(false); // open crafting screen
+        }
 
         var origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         var direction = transform.forward * 10;

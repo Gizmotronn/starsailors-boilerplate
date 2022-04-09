@@ -1,5 +1,5 @@
 /*
- *  A item window for the player containg the list of items in the player backpack
+ *  A item window for the player containg the list of items in the player backpack : Chris
  */
 
 using UnityEngine;
@@ -13,7 +13,6 @@ public class PlayerBackpack : InstanceMonoBehaviour<PlayerBackpack> // player it
     {
         base.Awake();
 
-        Debug.Log("PlayerBackpack awake window: " + window);
         window.Init(Player.Instance.backpack);
         Close(true);
     }

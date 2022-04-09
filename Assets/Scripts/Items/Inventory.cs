@@ -1,5 +1,5 @@
 /*
- *  This is a container for a list of items. It could be used by a player, a store, a container etc.
+ *  This is a container for a list of items. It could be used by a player, a store, a container etc. : Chris
  */
 
 using System.Collections.Generic;
@@ -16,13 +16,23 @@ public class Inventory
             items.Add(new Item());
     }
 
-    public int CountItems() { return items.Count; }
+    public int CountValidItems()
+    {
+        int valid = 0;
 
-    public Item GetItemAt(int index) { return (index >= 0 && index < CountItems()) ? items[index] : null; }
+        for (int i = 0; i < CountMaxItems(); i++)
+            valid += items[i].IsValid() ? 1 : 0;
+
+        return valid;
+    }
+
+    public int CountMaxItems() { return items.Count; }
+
+    public Item GetItemAt(int index) { return (index >= 0 && index < CountMaxItems()) ? items[index] : null; }
 
     public (int, int) PutItemAt(Item.Type type, int number, int index) // index -1 means first index with space
     {
-        if (index < 0 || index >= CountItems()) return (-1, 0); // out of range
+        if (index < 0 || index >= CountMaxItems()) return (-1, 0); // out of range
 
         if (items[index].IsValid())
         {
@@ -50,4 +60,11 @@ public class Inventory
         }
     }
 
+    public void ClearItems()
+    {
+        foreach (var i in items)
+        {
+            i.Clear();
+        }
+    }
 }
