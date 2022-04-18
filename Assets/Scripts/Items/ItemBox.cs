@@ -16,7 +16,7 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     public Image highlight;
     public TMPro.TextMeshProUGUI number;
 
-    Item item = new Item();
+    public Item item { get; private set; } = new Item();
     int index = 0;
 
     public bool can_drop_items { get; private set; } = true;
@@ -136,17 +136,20 @@ public class ItemBox : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
         if (results.Count < 1) // we're dragging out of the inventory, so drop the item
         {
-            float addx = Random.Range(1, 3f);
-            if (Random.Range(0, 2) > 0) addx = -addx;
-            float addy = Random.Range(1, 3f);
-            if (Random.Range(0, 2) > 0) addy = -addy;
+            if (PlayerBackpack.Instance.isOpen) // only if we're in the backpack
+            {
+                float addx = Random.Range(1, 3f);
+                if (Random.Range(0, 2) > 0) addx = -addx;
+                float addy = Random.Range(1, 3f);
+                if (Random.Range(0, 2) > 0) addy = -addy;
 
-            Vector3 where = new Vector3(Player.Instance.transform.position.x + addx, Player.Instance.transform.position.y + 0.5f, Player.Instance.transform.position.z + addy); // spawn in a random location away from the player so you don't automatically pick it up when you leave the inventory
+                Vector3 where = new Vector3(Player.Instance.transform.position.x + addx, Player.Instance.transform.position.y + 0.5f, Player.Instance.transform.position.z + addy); // spawn in a random location away from the player so you don't automatically pick it up when you leave the inventory
 
-            Player.Instance.SpawnCrate(item.type, item.number, where);
+                Player.Instance.SpawnCrate(item.type, item.number, where);
 
-            item.Clear();
-            parent.RefreshItems();
+                item.Clear();
+                parent.RefreshItems();
+            }
         }
     }
 

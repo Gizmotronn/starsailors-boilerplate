@@ -34,6 +34,7 @@ public class CraftingScreen : InstanceMonoBehaviour<CraftingScreen>
         forge_window.Init(forge, EnableCraftButton);
         output_window.Init(output);
         output_window.DisableItemDrop();
+
         Close(true);
     }
 

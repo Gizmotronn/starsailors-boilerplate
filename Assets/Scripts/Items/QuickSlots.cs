@@ -40,11 +40,6 @@ public class QuickSlots : InstanceMonoBehaviour<QuickSlots>
         {
             window.SetBoxSelected(3);
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
-        {
-            window.SetBoxSelected(4);
-        }
     }
 
     public void Refresh()
@@ -55,6 +50,7 @@ public class QuickSlots : InstanceMonoBehaviour<QuickSlots>
     public void Open(bool instant)
     {
         isOpen = true;
+        window.SetBoxSelected(-1);
         Refresh();
         Cursor.lockState = CursorLockMode.None;
 

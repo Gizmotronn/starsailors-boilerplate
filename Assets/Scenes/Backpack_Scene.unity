@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry_root_small (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 73dab97e026afe84b9b5550546e120fd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 73dab97e026afe84b9b5550546e120fd, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -547,6 +551,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry_root_small
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 73dab97e026afe84b9b5550546e120fd, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 73dab97e026afe84b9b5550546e120fd, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -837,6 +845,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry_treeb
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: dba72fc12133b5643ac00237c113ee6f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: dba72fc12133b5643ac00237c113ee6f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -893,6 +905,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d8d1159d00f7a884fb70904f0fec341b, type: 3}
       propertyPath: m_Name
       value: Crystal_clump_small (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d8d1159d00f7a884fb70904f0fec341b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d8d1159d00f7a884fb70904f0fec341b, type: 3}
       propertyPath: m_RootOrder
@@ -1199,6 +1215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry_root_medium
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 142420d6e2cd4c042bdc6487587eef45, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 142420d6e2cd4c042bdc6487587eef45, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1255,6 +1275,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 2fee99b8fa7fd4c47a17d1e5192f1559, type: 3}
       propertyPath: m_Name
       value: Dry_bulbous_plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2fee99b8fa7fd4c47a17d1e5192f1559, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2fee99b8fa7fd4c47a17d1e5192f1559, type: 3}
       propertyPath: m_RootOrder
@@ -1313,6 +1337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal_clump_small
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d8d1159d00f7a884fb70904f0fec341b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d8d1159d00f7a884fb70904f0fec341b, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -1369,6 +1397,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 8e75f6c4922560448ae77579ce8499a4, type: 3}
       propertyPath: m_Name
       value: medium_rockb_dry
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8e75f6c4922560448ae77579ce8499a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e75f6c4922560448ae77579ce8499a4, type: 3}
       propertyPath: m_RootOrder
@@ -1759,9 +1791,85 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1044559724}
     m_Modifications:
+    - target: {fileID: 100540, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 101460, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 101602, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 109144, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 111062, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 115994, guid: 3615206239d43394092c67f548246ac3, type: 3}
       propertyPath: m_Name
       value: Ship_landing
+      objectReference: {fileID: 0}
+    - target: {fileID: 115994, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117506, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 124118, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 125698, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 139378, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 148572, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 148750, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 155894, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 159428, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 169208, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 169794, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 173852, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 175396, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 194162, guid: 3615206239d43394092c67f548246ac3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 495088, guid: 3615206239d43394092c67f548246ac3, type: 3}
       propertyPath: m_RootOrder
@@ -2275,6 +2383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal_large
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7c0d0a48f2075ea4880155ee55d3364f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7c0d0a48f2075ea4880155ee55d3364f, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -2684,6 +2796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry_plant_tall
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 19777c00043ae0e41a49bc8c43d5e909, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 19777c00043ae0e41a49bc8c43d5e909, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2971,6 +3087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry_plant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -3079,6 +3199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cliff_dry
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e011d68aa7c202a469b7f7fa06aa530a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e011d68aa7c202a469b7f7fa06aa530a, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -3135,6 +3259,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
       propertyPath: m_Name
       value: Dry_plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
       propertyPath: m_RootOrder
@@ -3193,6 +3321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: flat_bigrock_dry
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 6c22f6aeefee5b94ca54323c20370e84, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6c22f6aeefee5b94ca54323c20370e84, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -3249,6 +3381,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
       propertyPath: m_Name
       value: Dry_plant (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
       propertyPath: m_RootOrder
@@ -3357,6 +3493,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 9d350f5bbf26d8a45a4f8a04d508fbe9, type: 3}
   m_PrefabInstance: {fileID: 1426935471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1044559728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044559720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eded92bf284d7d41b68777aa8c7d716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  structure_prefabs:
+  - {fileID: 100000, guid: a7e90a709c3594c429550e79d6ad5b9a, type: 3}
+  - {fileID: 100000, guid: cccde490a7af10546a6b9bb2056a8cce, type: 3}
+  - {fileID: 100000, guid: 6c8488486889cf74b9a69d1bba4d38ea, type: 3}
+  - {fileID: 100000, guid: ec3290ab0a5c908469693a8c162fc70f, type: 3}
+  - {fileID: 100000, guid: 98fe2148e4e04854aac4e630e8325ec5, type: 3}
+  - {fileID: 100000, guid: 83ef39bcab60eec44be3c524d59b826e, type: 3}
+  - {fileID: 100000, guid: 4bc3e621f8f4d5141ab480c86c2bf23d, type: 3}
+  - {fileID: 100000, guid: 751ca028a53984f458403d066f18343f, type: 3}
+  - {fileID: 100000, guid: b3e9e498ecd63ba4499dac61385ef17c, type: 3}
+  - {fileID: 100000, guid: e8fd64c899cbed64c9886ddee661dfd9, type: 3}
+  - {fileID: 100000, guid: 6b70f6d1a1a55d0468da4bc3e4cbe2d7, type: 3}
+  - {fileID: 100000, guid: e6c25de87cff1054e8f2ced9e07961ad, type: 3}
+  - {fileID: 100000, guid: 4eb9046e722d0534aa8f41851e286ea8, type: 3}
+  - {fileID: 100000, guid: d8d1159d00f7a884fb70904f0fec341b, type: 3}
+  - {fileID: 100000, guid: ced56cab2c0c5b14fb2e9c9cf890fcd5, type: 3}
+  - {fileID: 100000, guid: 6c22f6aeefee5b94ca54323c20370e84, type: 3}
+  - {fileID: 100000, guid: 1a3f41c1e5d8de74a9fd8a811a950e58, type: 3}
+  - {fileID: 100000, guid: c552636030674e642ae09c9ecd260152, type: 3}
+  - {fileID: 100000, guid: 2e1a1fafa9480064fbff03e539361aba, type: 3}
+  - {fileID: 100000, guid: e7999a7809e736e478ed30a3be5e2394, type: 3}
 --- !u!1 &1060216291
 GameObject:
   m_ObjectHideFlags: 0
@@ -4016,6 +4185,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: small_rocks_dry
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2e1a1fafa9480064fbff03e539361aba, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2e1a1fafa9480064fbff03e539361aba, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -4516,6 +4689,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry_root
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1effe0556aa31724bb1adeab5332a511, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1effe0556aa31724bb1adeab5332a511, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -4730,6 +4907,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 9d350f5bbf26d8a45a4f8a04d508fbe9, type: 3}
       propertyPath: m_Name
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9d350f5bbf26d8a45a4f8a04d508fbe9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9d350f5bbf26d8a45a4f8a04d508fbe9, type: 3}
       propertyPath: m_RootOrder
@@ -5225,6 +5406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry_grass
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 82c7db2f2f66cea4d8955ed98ff2deab, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 82c7db2f2f66cea4d8955ed98ff2deab, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5281,6 +5466,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
       propertyPath: m_Name
       value: Dry_plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d325311a4620ce7458a02103c4d20922, type: 3}
       propertyPath: m_RootOrder
@@ -5540,6 +5729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry_deadtreeb
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 35b89bcbbb56ce742a7d49d6274ec530, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 35b89bcbbb56ce742a7d49d6274ec530, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5669,9 +5862,6 @@ MonoBehaviour:
   groundRef: {fileID: 1044559720}
   crateCheck: {fileID: 410902103}
   crateDistance: 1
-  crateLayer:
-    serializedVersion: 2
-    m_Bits: 64
   controller: {fileID: 1925246000}
   mouse_sensitivity: 50
   speed: 100
@@ -5724,6 +5914,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 50fb9cbe029167d46a89ae652f7ee88a, type: 3}
       propertyPath: m_Name
       value: flat_rock_dry
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 50fb9cbe029167d46a89ae652f7ee88a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 50fb9cbe029167d46a89ae652f7ee88a, type: 3}
       propertyPath: m_RootOrder
@@ -5782,6 +5976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tall_rockb_dry
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e7999a7809e736e478ed30a3be5e2394, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e7999a7809e736e478ed30a3be5e2394, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -5838,6 +6036,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 2fee99b8fa7fd4c47a17d1e5192f1559, type: 3}
       propertyPath: m_Name
       value: Dry_bulbous_plant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2fee99b8fa7fd4c47a17d1e5192f1559, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2fee99b8fa7fd4c47a17d1e5192f1559, type: 3}
       propertyPath: m_RootOrder

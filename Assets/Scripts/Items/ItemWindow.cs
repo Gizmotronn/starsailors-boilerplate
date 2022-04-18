@@ -19,7 +19,7 @@ public class ItemWindow : MonoBehaviour
 
     public ItemBox itembox;
 
-    List<ItemBox> boxes;
+    List<ItemBox> boxes = new List<ItemBox>();
 
     Inventory inventory;
 
@@ -65,12 +65,21 @@ public class ItemWindow : MonoBehaviour
         foreach (ItemBox box in boxes)
             box.SetHighlight(false);
 
+        if (b == box_selected || b == -1) // if we try to select the same box again unselect it
+        {
+            box_selected = -1;
+            return;
+        }
+
         box_selected = b;
-
-        if (box_selected < 0) box_selected = 0;
-        if (box_selected > boxes.Count - 1) box_selected = boxes.Count - 1;
-
         boxes[box_selected].SetHighlight(true);
+    }
+
+    public Item GetSelectedItem()
+    {
+        if (box_selected == -1) return new Item();
+
+        return boxes[box_selected].item;
     }
 
     public void AddItem(Item item)

@@ -10,7 +10,7 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
     public GameObject groundRef; // ref to the ground mesh so I can spawn stuff on it
     public GameObject crateCheck; // used to check collisions with crates
     public float crateDistance; // distance to detect collisions with crates
-    public LayerMask crateLayer;
+    LayerMask crateLayer;
 
     //public GameObject LookAtTarget; // this is to point the camera at : Chris
     public CharacterController controller; 
@@ -34,7 +34,9 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 	{
 		base.Awake();
 
-		controller = GetComponent<CharacterController>();
+        crateLayer = LayerMask.NameToLayer("Crates");
+
+        controller = GetComponent<CharacterController>();
 		anim = gameObject.GetComponentInChildren<Animator>();
 
 		backpack.Init(10 * 11);
@@ -123,9 +125,10 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
         // call .Move() once only
         controller.Move(move * Time.deltaTime);
 
-		// check for key commands
+        #region Key_Commands
+        // check for key commands
 
-		if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
 			PlayerBackpack.Instance.Open(false); // open player backpack
 		}
@@ -150,7 +153,7 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
                 var obj = hit.transform.gameObject;
 
                 Debug.Log("object hit " + obj.name);
-                if (1 << obj.layer == crateLayer)
+                if (obj.layer == crateLayer)
                 {
                     PickupCrate(obj.GetComponent<Crate>());
                 }
@@ -170,7 +173,25 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
             SpawnCrate(Item.GetRandomType(), Random.Range(1, 99), new Vector3(randx, 30, randy)); // spawn a random crate
         }
 
-        for (int i = 0; i < Physics.OverlapSphereNonAlloc(crateCheck.transform.position, crateDistance, hitColliders, crateLayer); i++) // check for collisions with crates
+        if (Input.GetKeyDown(KeyCode.B)) // build something at that spot based on the item selected in the quickslots
+        {
+            var item = QuickSlots.Instance.window.GetSelectedItem();
+
+            if(QuickSlots.Instance.isOpen && item.IsValid())
+            {
+                if (Ground.Instance.BuildStructure(item, origin + transform.forward * 3))
+                {
+                    item.Clear();
+                    QuickSlots.Instance.window.SetBoxSelected(-1);
+                    QuickSlots.Instance.Refresh();
+                }
+            }
+        }
+
+        #endregion
+        // End key commands
+
+        for (int i = 0; i < Physics.OverlapSphereNonAlloc(crateCheck.transform.position, crateDistance, hitColliders, 1 << crateLayer); i++) // check for collisions with crates
         {
             PickupCrate(hitColliders[i].gameObject.GetComponent<Crate>());
         }
