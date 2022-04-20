@@ -62,8 +62,10 @@ public class QuickSlots : InstanceMonoBehaviour<QuickSlots>
             LeanTween.move(gameObject.GetComponent<RectTransform>(), openpos, 0.3f).setDelay(0.1f);
     }
 
-    public void Close(bool instant)
+    public void Close(bool instant, bool force = false)
     {
+        if (!isOpen && !force) return;
+
         isOpen = false;
         Cursor.lockState = CursorLockMode.Locked;
 

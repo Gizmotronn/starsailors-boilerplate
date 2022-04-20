@@ -35,7 +35,7 @@ public class CraftingScreen : InstanceMonoBehaviour<CraftingScreen>
         output_window.Init(output);
         output_window.DisableItemDrop();
 
-        Close(true);
+        Close(true, true);
     }
 
     void Update()
@@ -52,9 +52,10 @@ public class CraftingScreen : InstanceMonoBehaviour<CraftingScreen>
 
     public void Open(bool instant)
     {
-        QuickSlots.Instance.Close(instant);
-
         isOpen = true;
+
+        QuickSlots.Instance.Close(instant);
+        BuildingScreen.Instance.Close(instant);
 
         backpack_window.RefreshItems(0);
         forge_window.RefreshItems(0);
@@ -70,8 +71,10 @@ public class CraftingScreen : InstanceMonoBehaviour<CraftingScreen>
             LeanTween.move(gameObject.GetComponent<RectTransform>(), openpos, 0.3f).setDelay(0.1f);
     }
 
-    public void Close(bool instant)
+    public void Close(bool instant, bool force = false)
     {
+        if (!isOpen && !force) return;
+
         // throw all the items from the forge and output slots into the players inventory before we close
 
         for (int i = 0; i < forge.CountMaxItems(); i++)

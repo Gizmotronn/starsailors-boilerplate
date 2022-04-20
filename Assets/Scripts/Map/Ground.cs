@@ -155,12 +155,12 @@ public class Ground : InstanceMonoBehaviour<Ground>
         //where = new Vector3(where.x, ypos, where.z);
         var groundpos = new Vector3(where.x, where.z * -1, ypos);
 
-        int s = GetStructureForItem(item);
+        var structure = GetStructureForItem(item);
 
-        if (s < 0) return false;
+        if (structure == null) return false;
 
         int startx, starty, endx, endy;
-        (startx, starty, endx, endy) = GetGridSpaceForObject(structure_prefabs[s], groundpos);
+        (startx, starty, endx, endy) = GetGridSpaceForObject(structure, groundpos);
 
         // check grid to make sure we have room
 
@@ -180,10 +180,7 @@ public class Ground : InstanceMonoBehaviour<Ground>
 
         if (!is_space) return false;
 
-        var structure = Instantiate(structure_prefabs[s]);
-        structure.SetActive(true);
         structure.transform.SetParent(gameObject.transform);
-        //var groundpos = new Vector3(where.x, where.z * -1, where.y);
         structure.transform.localPosition = groundpos;
 
         Debug.Log("spawned " + structure.name + " at " + groundpos);
@@ -201,14 +198,17 @@ public class Ground : InstanceMonoBehaviour<Ground>
         return true;
     }
 
-    int GetStructureForItem(Item item)
+    public GameObject GetStructureForItem(Item item)
     {
-        if (item.IsValid())
-        {
-            return (int)item.type % structure_prefabs.Count;
-        }
+        if (!item.IsValid())
+            return null;
 
-        return -1;
+        int s = (int)item.type % structure_prefabs.Count;
+
+        var structure = Instantiate(structure_prefabs[s]);
+        structure.SetActive(true);
+
+        return structure;
     }
 
     bool ValidPos(int x, int y)

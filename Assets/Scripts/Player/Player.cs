@@ -7,7 +7,6 @@ using UnityEngine;
 public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is so I can access the instance of this class from anywhere in the code : Chris
 {
     public GameObject crateRef; // ref to the crate object
-    public GameObject groundRef; // ref to the ground mesh so I can spawn stuff on it
     public GameObject crateCheck; // used to check collisions with crates
     public float crateDistance; // distance to detect collisions with crates
     LayerMask crateLayer;
@@ -42,14 +41,6 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
 		backpack.Init(10 * 11);
 
         Cursor.lockState = CursorLockMode.Locked; // set the cursor state to hide the cursor
-
-        //for (int i = 0; i < 6; i++) // fill the backpack with junk
-        //{
-        //    backpack.PutItemAt(Item.GetRandomType(), Random.Range(1, 99), i);
-        //}
-
-        //for (int i = 0; i < backpack.CountItems(); i++)
-        //    Debug.Log("item " + i + " is " + backpack.GetItemAt(i).type + " # " + backpack.GetItemAt(i).number);
     }
     // end temp ///////////////////////////////
 
@@ -138,34 +129,34 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
             CraftingScreen.Instance.Open(false); // open crafting screen
         }
 
-        var origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-        var direction = transform.forward * 10;
-        Debug.DrawRay(origin, direction, Color.red);
+        //var origin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        //var direction = transform.forward * 10;
+        //Debug.DrawRay(origin, direction, Color.red);
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            var ray = new Ray(origin, direction);
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    var ray = new Ray(origin, direction);
 
-            RaycastHit hit;
+        //    RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                var obj = hit.transform.gameObject;
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        var obj = hit.transform.gameObject;
 
-                Debug.Log("object hit " + obj.name);
-                if (obj.layer == crateLayer)
-                {
-                    PickupCrate(obj.GetComponent<Crate>());
-                }
-            }
-        }
+        //        Debug.Log("object hit " + obj.name);
+        //        if (obj.layer == crateLayer)
+        //        {
+        //            PickupCrate(obj.GetComponent<Crate>());
+        //        }
+        //    }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !BuildingScreen.Instance.isOpen)
         {
             // pick a random location
 
-            float scalex = groundRef.transform.localScale.x * 5;
-            float scaley = groundRef.transform.localScale.y * 5;
+            float scalex = Ground.Instance.gameObject.transform.localScale.x * 5;
+            float scaley = Ground.Instance.gameObject.transform.localScale.y * 5;
 
             float randx = Random.Range(-scalex, scalex);
             float randy = Random.Range(-scaley, scaley);
@@ -173,18 +164,13 @@ public class Player : InstanceMonoBehaviour<Player> // InstanceMonoBehaviour is 
             SpawnCrate(Item.GetRandomType(), Random.Range(1, 99), new Vector3(randx, 30, randy)); // spawn a random crate
         }
 
-        if (Input.GetKeyDown(KeyCode.B)) // build something at that spot based on the item selected in the quickslots
+        if (Input.GetKeyDown(KeyCode.B) && !BuildingScreen.Instance.isOpen) // build something at that spot based on the item selected in the quickslots
         {
             var item = QuickSlots.Instance.window.GetSelectedItem();
 
             if(QuickSlots.Instance.isOpen && item.IsValid())
             {
-                if (Ground.Instance.BuildStructure(item, origin + transform.forward * 3))
-                {
-                    item.Clear();
-                    QuickSlots.Instance.window.SetBoxSelected(-1);
-                    QuickSlots.Instance.Refresh();
-                }
+                BuildingScreen.Instance.Open(false, item);
             }
         }
 
