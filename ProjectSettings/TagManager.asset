@@ -4,18 +4,24 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Crate
+  - CinemachineTarget
+  - Creature
+  - Sword
+  - RightHand
+  - LeftHand
+  - QrConnectMenu
+  - IOSConnectMenu
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-  - Crates
-  - Structures
-  - Ignore
-  - 
+  - Character
+  - CollisionBlocker
+  - RangeChecker
+  - Weapon
   - 
   - 
   - 
